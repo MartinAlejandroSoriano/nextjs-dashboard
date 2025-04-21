@@ -1,4 +1,5 @@
-import { Revenue } from './definitions';
+import InvoiceStatus from '../ui/invoices/status';
+import { Status, Revenue } from './definitions';
 
 export const formatCurrency = (amount: number) => {
   return (amount / 100).toLocaleString('en-US', {
@@ -6,6 +7,11 @@ export const formatCurrency = (amount: number) => {
     currency: 'USD',
   });
 };
+
+export const toStatus = (status: string) : Status | null => {
+  const validStatuses: Status[] = ["pending", "paid"];
+  return validStatuses.includes(status as Status)? (status as Status) : null;
+}
 
 export const formatDateToLocal = (
   dateStr: string,
